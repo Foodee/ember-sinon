@@ -1,0 +1,27 @@
+---
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Setup Yarn
+        run: npm install -g  yarn && yarn set version 4.3.1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Runs tests
+        run: ember try-each

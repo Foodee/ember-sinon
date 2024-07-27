@@ -1,16 +1,7 @@
-Ember Sinon (_Deprecated_)
+Ember Sinon Foodee
 ===========
 
-:warning: **Deprecation notice**: `ember-sinon` is deprecated. Consider using [ember-sinon-qunit](https://github.com/elwayman02/ember-sinon-qunit) instead. :warning:
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/csantero/ember-sinon.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.org/csantero/ember-sinon.svg?branch=master)](https://travis-ci.org/csantero/ember-sinon)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-sinon.svg)](http://emberobserver.com/addons/ember-sinon)
-[![Code Climate](https://codeclimate.com/github/csantero/ember-sinon/badges/gpa.svg)](https://codeclimate.com/github/csantero/ember-sinon)
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/b6e21f46906b4847907956ea4806cfa9)](https://www.codacy.com/app/hawker-jordan/ember-sinon)
-
-This addon adds support for [Sinon](https://github.com/cjohansen/Sinon.JS) to assist in testing your Ember CLI app.
+This addon adds support for [Sinon](https://github.com/sinonjs/sinon) to assist in testing your Ember CLI app.
 
 
 Compatibility

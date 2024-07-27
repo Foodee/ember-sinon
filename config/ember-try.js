@@ -1,24 +1,35 @@
 'use strict';
 
 const getChannelURL = require('ember-source-channel-url');
+const { embroiderSafe, embroiderOptimized  } = require('@embroider/test-setup');
 
 module.exports = async function() {
   return {
     useYarn: true,
+    // override this to avoid ember-try trying to use `--no-lockfile` which
+    // doesn't exist in yarn 3 or 4
+    // see https://github.com/ember-cli/ember-try/issues/741
+    buildManagerOptions() {
+      return [''];
+    },
     scenarios: [
       {
-        name: 'ember-lts-3.12',
+        name: 'ember-lts-5.4',
         npm: {
           devDependencies: {
-            'ember-source': '~3.12.0'
+            'ember-source': '~5.4.0',
+            'ember-auto-import': '^2.7.4',
+            'webpack': '^5.93.0'
           }
         }
       },
       {
-        name: 'ember-lts-3.16',
+        name: 'ember-lts-5.8',
         npm: {
           devDependencies: {
-            'ember-source': '~3.16.0'
+            'ember-source': '~5.8.0',
+            'ember-auto-import': '^2.7.4',
+            'webpack': '^5.93.0'
           }
         }
       },
@@ -26,7 +37,9 @@ module.exports = async function() {
         name: 'ember-release',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('release')
+            'ember-source': await getChannelURL('release'),
+            'ember-auto-import': '^2.7.4',
+            'webpack': '^5.93.0'
           }
         }
       },
@@ -34,7 +47,9 @@ module.exports = async function() {
         name: 'ember-beta',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('beta')
+            'ember-source': await getChannelURL('beta'),
+            'ember-auto-import': '^2.7.4',
+            'webpack': '^5.93.0'
           }
         }
       },
@@ -42,7 +57,9 @@ module.exports = async function() {
         name: 'ember-canary',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('canary')
+            'ember-source': await getChannelURL('canary'),
+            'ember-auto-import': '^2.7.4',
+            'webpack': '^5.93.0'
           }
         }
       },
@@ -56,34 +73,8 @@ module.exports = async function() {
           devDependencies: {}
         }
       },
-      {
-        name: 'ember-default-with-jquery',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'jquery-integration': true
-          })
-        },
-        npm: {
-          devDependencies: {
-            '@ember/jquery': '^0.5.1'
-          }
-        }
-      },
-      {
-        name: 'ember-classic',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'application-template-wrapper': true,
-            'default-async-observers': false,
-            'template-only-glimmer-components': false
-          })
-        },
-        npm: {
-          ember: {
-            edition: 'classic'
-          }
-        }
-      }
+      embroiderSafe(),
+      embroiderOptimized(),
     ]
   };
 };

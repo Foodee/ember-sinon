@@ -24,7 +24,7 @@ module.exports = {
   },
 
   treeForVendor(tree) {
-    let sinonPath = path.dirname(require.resolve('sinon/pkg/sinon'));
+    let sinonPath = path.dirname(require.resolve('sinon/pkg/sinon.js'));
     let sinonTree = new Funnel(sinonPath, {
       files: ['sinon.js'],
       destDir: '/sinon',
